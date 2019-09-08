@@ -4,26 +4,26 @@ services:
   db:
     image: postgres:11
     environment:
-        - POSTGRES_DB: '${DB_NAME}'
-        - POSTGRES_PASSWORD: '${DB_PASS}'
-        - POSTGRES_USER: '${DB_USER}'
+        POSTGRES_DB: '${DB_NAME}'
+        POSTGRES_PASSWORD: '${DB_PASS}'
+        POSTGRES_USER: '${DB_USER}'
     volumes:
-      - ./db:/var/lib/postgresql/data
+        - ./db/data:/var/lib/postgresql/data
     networks:
-      - default
+        - default
 
   wiki:
     image: requarks/wiki:beta
     depends_on:
-      - db
+        - db
     environment:
-      DB_TYPE: '${DB_TYPE:-postgres}'
-      DB_HOST: '${DB_HOST:-db}'
-      DB_PORT: '${DB_PORT:-5432}'
-      DB_USER: '${DB_USER}'
-      DB_PASS: '${DB_PASS}'
-      DB_NAME: '${DB_NAME}'
+        DB_TYPE: '${DB_TYPE:-postgres}'
+        DB_HOST: '${DB_HOST:-db}'
+        DB_PORT: '${DB_PORT:-5432}'
+        DB_USER: '${DB_USER}'
+        DB_PASS: '${DB_PASS}'
+        DB_NAME: '${DB_NAME}'
     networks:
-      - default
+        - default
     ports:
-      - '${WIKI_PORT:-3000}:3000'
+        - '${WIKI_PORT:-3000}:3000'
