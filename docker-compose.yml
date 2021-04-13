@@ -13,7 +13,7 @@ services:
         - default
 
   wiki:
-    image: requarks/wiki:beta
+    image: requarks/wiki:2
     depends_on:
         - db
     environment:
